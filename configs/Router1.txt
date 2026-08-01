@@ -1,4 +1,4 @@
-Building configuration...
+Building configuration...https://github.com/Dialdeen/Cisco-enterprise-redundancy-network/blob/main/configs/Router1.txt
 
 Current configuration : 1794 bytes
 !
