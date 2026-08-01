@@ -15,8 +15,8 @@ This project demonstrates core enterprise network engineering principles, includ
 
 
 ```
+<img width="1024" height="888" alt="image" src="https://github.com/user-attachments/assets/7aecac16-2a50-4a6c-81b3-4a2155ac9f8a" />
 
-```<img width="1024" height="888" alt="image" src="https://github.com/user-attachments/assets/046cc255-04bc-40dc-93ea-f4a01cdf9d28"/>
 
      
 
