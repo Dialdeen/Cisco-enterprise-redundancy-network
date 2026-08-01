@@ -79,8 +79,8 @@ Using native **Wireshark** integration within GNS3, live packet analysis was per
 | **VLAN 10 (Staff)** | `192.168.1.0` | `/24 (255.255.255.0)` | `192.168.1.1` (Virtual Gateway) |
 | **VLAN 20 (Admins)** | `192.168.2.0` | `/24 (255.255.255.0)` | `192.168.2.1` (Virtual Gateway) |
 | **VLAN 100 (Native)**| `N/A (Layer 2 Only)`| `N/A` | Security Trunk Management |
-| **Router1 to Internet** | `10.0.1.0` | `/30 (255.255.255.252)` | Perimeter WAN Edge 1 |
-| **Router2 to Internet** | `10.0.2.0` | `/30 (255.255.255.252)` | Perimeter WAN Edge 2 |
+| **Router1 to Internet** | `10.0.1.0` | `/30 (255.255.255.252)` |  WAN Edge 1 |
+| **Router2 to Internet** | `10.0.2.0` | `/30 (255.255.255.252)` |  WAN Edge 2 |
 | **Router1 to Root-Switch** | `10.1.1.0` | `/30 (255.255.255.252)` | Primary Core Transit Link |
 | **Router1 to Sec-Switch** | `10.2.1.0` | `/30 (255.255.255.252)` | Backup Core Transit Link |
 | **Router2 to Root-Switch** | `10.1.2.0` | `/30 (255.255.255.252)` | Backup Core Transit Link |
