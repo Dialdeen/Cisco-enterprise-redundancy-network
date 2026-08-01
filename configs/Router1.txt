@@ -1,0 +1,129 @@
+Building configuration...
+
+Current configuration : 1794 bytes
+!
+! Last configuration change at 20:01:38 UTC Sat Aug 1 2026
+!
+version 15.0
+service timestamps debug datetime msec
+service timestamps log datetime msec
+service password-encryption
+!
+hostname Router1
+!
+boot-start-marker
+boot-end-marker
+!
+!
+enable secret 5 $1$NXmh$xzmv9XHFIOfnOhAAzogxz.
+!
+username admin privilege 15 secret 5 $1$ZigV$UM2d4hFikteTcHw363s0G.
+no aaa new-model
+!
+ip cef
+ip domain-name Enterprise
+!
+no ipv6 cef
+!
+!
+!
+!
+!
+!
+interface Ethernet0/0
+ no ip address
+ shutdown
+!
+interface Ethernet0/1
+ ip address 10.0.1.2 255.255.255.252
+!
+interface Ethernet0/2
+ ip address 10.1.1.1 255.255.255.252
+!
+interface Ethernet0/3
+ no ip address
+ shutdown
+!
+interface Ethernet1/0
+ no ip address
+ shutdown
+!
+interface Ethernet1/1
+ no ip address
+ shutdown
+!
+interface Ethernet1/2
+ no ip address
+ shutdown
+!
+interface Ethernet1/3
+ ip address 10.2.1.1 255.255.255.252
+!
+interface Serial2/0
+ no ip address
+ shutdown
+ no fair-queue
+ serial restart-delay 0
+!
+interface Serial2/1
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+interface Serial2/2
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+interface Serial2/3
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+interface Serial3/0
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+interface Serial3/1
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+interface Serial3/2
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+interface Serial3/3
+ no ip address
+ shutdown
+ serial restart-delay 0
+!
+router ospf 1
+ router-id 1.1.1.1
+ network 10.0.1.0 0.0.0.3 area 0
+ network 10.1.1.0 0.0.0.3 area 0
+ network 10.2.1.0 0.0.0.3 area 0
+!
+!
+ip forward-protocol nd
+no ip http server
+ip route 0.0.0.0 0.0.0.0 10.0.1.1
+!
+!
+!
+!
+!
+control-plane
+!
+!
+line con 0
+ logging synchronous
+ login local
+line aux 0
+line vty 0 4
+ login local
+ transport input all
+!
+end
