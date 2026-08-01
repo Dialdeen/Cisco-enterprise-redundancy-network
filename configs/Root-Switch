@@ -1,0 +1,211 @@
+Building configuration...
+Compressed configuration from 3440 bytes to 1862 bytes[OK]
+Root-Switch#
+Root-Switch#
+Root-Switch#
+Root-Switch#
+Root-Switch#
+Root-Switch#
+Root-Switch#sho
+Root-Switch#show run
+Root-Switch#show running-config
+Building configuration...
+
+Current configuration : 3440 bytes
+!
+! Last configuration change at 19:55:36 UTC Sat Aug 1 2026
+!
+version 15.1
+service timestamps debug datetime msec
+service timestamps log datetime msec
+service password-encryption
+service compress-config
+!
+hostname Root-Switch
+!
+boot-start-marker
+boot-end-marker
+!
+!
+logging discriminator EXCESS severity drops 6 msg-body drops EXCESSCOLL
+logging buffered 50000
+logging console discriminator EXCESS
+enable secret 4 Cq2gROSp/6d1LvPgUSIjyGphSJe9KdkL/kxeMwZuIv6
+!
+username admin privilege 15 secret 4 Cq2gROSp/6d1LvPgUSIjyGphSJe9KdkL/kxeMwZuIv6
+no aaa new-model
+no ip icmp rate-limit unreachable
+!
+ip cef
+ip dhcp excluded-address 192.168.1.1 192.168.1.10
+ip dhcp excluded-address 192.168.2.1 192.168.2.10
+!
+ip dhcp pool Vlan10
+ network 192.168.1.0 255.255.255.0
+ default-router 192.168.1.1
+!
+ip dhcp pool Vlan20
+ network 192.168.2.0 255.255.255.0
+ default-router 192.168.2.1
+!
+!
+no ip domain-lookup
+no ipv6 cef
+ipv6 multicast rpf use-bgp
+!
+!
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+spanning-tree vlan 10,20 priority 24576
+!
+!
+!
+!
+vlan internal allocation policy ascending
+!
+ip tcp synwait-time 5
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Port-channel1
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport trunk native vlan 100
+ switchport trunk allowed vlan 10,20
+ switchport mode trunk
+!
+interface Ethernet0/0
+ switchport access vlan 10
+ switchport mode access
+ duplex auto
+ spanning-tree portfast
+!
+interface Ethernet0/1
+ switchport access vlan 10
+ switchport mode access
+ duplex auto
+ spanning-tree portfast
+!
+interface Ethernet0/2
+ switchport access vlan 10
+ switchport mode access
+ duplex auto
+ spanning-tree portfast
+!
+interface Ethernet0/3
+ duplex auto
+!
+interface Ethernet1/0
+ switchport trunk encapsulation dot1q
+ switchport trunk native vlan 100
+ switchport trunk allowed vlan 10,20
+ switchport mode trunk
+ duplex auto
+ channel-group 1 mode active
+!
+interface Ethernet1/1
+ switchport trunk encapsulation dot1q
+ switchport trunk native vlan 100
+ switchport trunk allowed vlan 10,20
+ switchport mode trunk
+ duplex auto
+ channel-group 1 mode active
+!
+interface Ethernet1/2
+ no switchport
+ ip address 10.1.1.2 255.255.255.252
+!
+interface Ethernet1/3
+ no switchport
+ ip address 10.1.2.2 255.255.255.252
+!
+interface Ethernet2/0
+ duplex auto
+!
+interface Ethernet2/1
+ duplex auto
+!
+interface Ethernet2/2
+ duplex auto
+!
+interface Ethernet2/3
+ duplex auto
+!
+interface Ethernet3/0
+ duplex auto
+!
+interface Ethernet3/1
+ duplex auto
+!
+interface Ethernet3/2
+ duplex auto
+!
+interface Ethernet3/3
+ duplex auto
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+interface Vlan10
+ ip address 192.168.1.2 255.255.255.0
+ ip access-group Deny_Stff in
+ standby version 2
+ standby 10 ip 192.168.1.1
+ standby 10 priority 110
+ standby 10 preempt
+!
+interface Vlan20
+ ip address 192.168.2.2 255.255.255.0
+ standby version 2
+ standby 20 ip 192.168.2.1
+ standby 20 priority 110
+ standby 20 preempt
+!
+router ospf 1
+ router-id 3.3.3.3
+ network 10.1.1.0 0.0.0.3 area 0
+ network 10.1.2.0 0.0.0.3 area 0
+ network 192.168.1.0 0.0.0.255 area 0
+ network 192.168.2.0 0.0.0.255 area 0
+!
+!
+no ip http server
+!
+!
+ip access-list extended Deny_Stff
+ deny   ip 192.168.1.0 0.0.0.255 192.168.2.0 0.0.0.255
+ permit ip any any
+!
+!
+!
+!
+control-plane
+!
+!
+line con 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+ login local
+line aux 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line vty 0 4
+ login local
+ transport input ssh
+!
+end
